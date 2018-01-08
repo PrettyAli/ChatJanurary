@@ -72,29 +72,25 @@ public class BottomTabView extends LinearLayout {
         mTextSelectedColor = Color.parseColor(COLOR_TEXT_SELECTED);
     }
 
-    public void setViewPager(ViewPager viewPager)
-    {
+    public void setViewPager(ViewPager viewPager) {
         //清空所有的view
         removeAllViews();
 
         mViewPager = viewPager;
         //viewapger数据不为空
-        if(viewPager != null && viewPager.getAdapter() != null)
-        {
+        if (viewPager != null && viewPager.getAdapter() != null) {
             //设置监听
             viewPager.addOnPageChangeListener(new ViewPagerListener());
-            try
-            {
+            try {
                 populateTabLayout();
-            }catch(Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
     }
 
-    private void populateTabLayout() {
+    private void populateTabLayout() throws Exception {
         final PagerAdapter pagerAdapter = mViewPager.getAdapter();
         final OnClickListener tabClickListener = new TabClickListener();
         //根据adapter中item的数量生成数组
@@ -179,47 +175,45 @@ public class BottomTabView extends LinearLayout {
         super.onDraw(canvas);
         final int childCount = getChildCount();
         if (childCount > 0) {
-            if(mSelectionOffset>0f&&mSelectedPosition<(getChildCount()-1)){
-                View selectedTab=getChildAt(mSelectedPosition);
-                View nextTab=getChildAt(mSelectedPosition+1);
-                View selectedIconView=getChildAt(0);
-                View nextIconView=getChildAt(0);
-                View selectedTextView=getChildAt(1);
-                View nextTextView=getChildAt(1);
-                if(selectedIconView instanceof BottomIconView&&nextIconView instanceof BottomIconView){
+            if (mSelectionOffset > 0f && mSelectedPosition < (getChildCount() - 1)) {
+                View selectedTab = getChildAt(mSelectedPosition);
+                View nextTab = getChildAt(mSelectedPosition + 1);
+                View selectedIconView = getChildAt(0);
+                View nextIconView = getChildAt(0);
+                View selectedTextView = getChildAt(1);
+                View nextTextView = getChildAt(1);
+                if (selectedIconView instanceof BottomIconView && nextIconView instanceof BottomIconView) {
                     ((BottomIconView) selectedIconView).transformPage(mSelectionOffset);
-                    ((BottomIconView) nextIconView).transformPage(1-mSelectionOffset);
+                    ((BottomIconView) nextIconView).transformPage(1 - mSelectionOffset);
                 }
                 /**
                  * 使用ArgbEvaluator类来控制文本的颜色渐变
                  */
                 //draw text color
-                Integer selectedColor = (Integer)mColorEvaluator.evaluate(mSelectionOffset,
+                Integer selectedColor = (Integer) mColorEvaluator.evaluate(mSelectionOffset,
                         mTextSelectedColor,
                         mTextNormalColor);
 
-                Integer nextColor = (Integer)mColorEvaluator.evaluate(1 - mSelectionOffset,
+                Integer nextColor = (Integer) mColorEvaluator.evaluate(1 - mSelectionOffset,
                         mTextSelectedColor,
                         mTextNormalColor);
-                if(selectedTextView instanceof TextView&&nextIconView instanceof TextView){
+                if (selectedTextView instanceof TextView && nextIconView instanceof TextView) {
                     ((TextView) selectedTextView).setTextColor(selectedColor);
+                    ((TextView) nextTextView).setTextColor(nextColor);
                 }
             }
         }
     }
+
     /**
      * Tab的Item点击
      */
-    private class TabClickListener implements OnClickListener
-    {
+    private class TabClickListener implements OnClickListener {
         @Override
-        public void onClick(View v)
-        {
-            for(int i = 0;i < getChildCount();i++)
-            {
-                if(v == getChildAt(i))
-                {
-                    mViewPager.setCurrentItem(i,false);
+        public void onClick(View v) {
+            for (int i = 0; i < getChildCount(); i++) {
+                if (v == getChildAt(i)) {
+                    mViewPager.setCurrentItem(i, false);
                     return;
                 }
             }

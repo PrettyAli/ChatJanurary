@@ -1,6 +1,5 @@
 package com.ccy.janurary08;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,7 +22,6 @@ import android.widget.ImageView;
  * Created by chanchaoyue on 2018/1/7.
  */
 
-@SuppressLint("AppCompatCustomView")
 public class BottomIconView extends ImageView {
 
     public static final int START_POSITION = 0;
@@ -53,14 +51,14 @@ public class BottomIconView extends ImageView {
         super(context, attributeSet, defStyleAttr);
     }
 
-    public final void init(int normal, int selected) {
+    public final void init(int normal, int selected) throws Exception{
         bIconNormal = createBitmap(normal);
         bIconSelected = createBitmap(selected);
-        if (bIconNormal == null && bIconSelected == null) {
+        if (bIconNormal == null && bIconSelected == null) throw new Exception("icon id can not create1 bitmap"); {
             mRectNormal = new Rect(START_POSITION, START_POSITION, bIconNormal.getWidth(), bIconNormal.getHeight());
             mRectSelected = new Rect(START_POSITION, START_POSITION, bIconSelected.getWidth(), bIconSelected.getHeight());
         }
-        bPain = new Paint();
+        bPain = new Paint(1);
     }
 
     private Bitmap createBitmap(int resId) {
