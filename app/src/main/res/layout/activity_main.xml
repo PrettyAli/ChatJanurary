@@ -6,13 +6,18 @@
     android:orientation="vertical"
     tools:context="com.ccy.janurary08.MainActivity">
 
-    <include layout="@layout/layout_head" />
+    <include
+        android:id="@+id/head_main"
+        layout="@layout/layout_head" />
 
     <FrameLayout
-        android:id="@+id/pagefragment"
+        android:id="@+id/pageFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <include layout="@layout/layout_bottom" />
+    <include
+        android:id="@+id/bottom_main"
+        layout="@layout/layout_bottom" />
 
 </LinearLayout>
