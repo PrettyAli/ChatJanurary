@@ -54,6 +54,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         head_menu = view_head.findViewById(R.id.head_menu);
         frameLayout=findViewById(R.id.pageFragment);
         frameLayout.setOnClickListener(this);
+//        weixin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                title_text.setText(R.string.app_name);
+//            }
+//        });
 
 //        head_menu.setOnClickListener(new ClickEvent());
 //        weixin.setOnClickListener(new ClickEvent());
@@ -73,39 +79,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //        textviews[3] = findViewById(R.id.bottom_mine_text);
 //        textviews[0].setTextColor(0xFF45C01A);
     }
-
-    class ClickEvent implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.head_menu:
-                    initPopWindow();
-                    break;
-                case R.id.re_weixin:
-                    index = 0;
-                    if (homefragment != null) {
-                        homefragment.refresh();
-                    }
-                    title_text.setText(R.string.app_name);
-                    break;
-                case R.id.re_contactlist:
-                    index = 1;
-                    title_text.setText(R.string.contacts);
-                    break;
-                case R.id.re_find:
-                    index = 2;
-                    title_text.setText(R.string.discover);
-                    break;
-                case R.id.re_mine:
-                    index = 3;
-                    title_text.setText(R.string.mine);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
+//
+//    class ClickEvent implements View.OnClickListener {
+//
+//        @Override
+//        public void onClick(View v) {
+//            switch (v.getId()) {
+//                case R.id.head_menu:
+//                    initPopWindow();
+//                    break;
+//                case R.id.re_weixin:
+//                    index = 0;
+//                    if (homefragment != null) {
+//                        homefragment.refresh();
+//                    }
+//                    title_text.setText(R.string.app_name);
+//                    break;
+//                case R.id.re_contactlist:
+//                    index = 1;
+//                    title_text.setText(R.string.contacts);
+//                    break;
+//                case R.id.re_find:
+//                    index = 2;
+//                    title_text.setText(R.string.discover);
+//                    break;
+//                case R.id.re_mine:
+//                    index = 3;
+//                    title_text.setText(R.string.mine);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//    }
 
     private void initPopWindow() {
         titlePopup = new TitlePopup(this, ActionBar.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -154,10 +160,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 initPopWindow();
                 break;
             case R.id.re_weixin:
-                index = 0;
-                if (homefragment != null) {
-                    homefragment.refresh();
-                }
+//                index = 0;
+//                if (homefragment != null) {
+//                    homefragment.refresh();
+//                }
                 title_text.setText(R.string.app_name);
                 break;
             case R.id.re_contactlist:
